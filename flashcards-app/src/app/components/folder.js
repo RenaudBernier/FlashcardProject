@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PromptDialog from "@/app/components/promptdialog";
 import {useState} from "react";
 
-//Make recursive
+
 export default function Folder({ folder }) {
     const [open, setOpen] = React.useState([]);
 

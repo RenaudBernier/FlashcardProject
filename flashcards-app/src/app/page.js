@@ -2,7 +2,7 @@ import Image from "next/image";
 import {Container, Typography, Drawer, Box} from "@mui/material"
 import Sidebar from "./components/sidebar.js"
 import LoginCheck from "@/app/login/logincheck";
-import MainBlock from "@/app/components/tiptap/main";
+import MainBlock from "./components/tiptap/MainBlock";
 
 
 
@@ -16,7 +16,9 @@ export default async function Home() {
             <Sidebar>
             </Sidebar>
         </Drawer>
-        <MainBlock></MainBlock>
+        <Box sx={{ ml: '240px', p: 2 }}>
+            <MainBlock />
+        </Box>
     </Box>
     );
 }
