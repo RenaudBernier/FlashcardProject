@@ -16,7 +16,7 @@ const contents = getcards()
 
 
 
-export default function Sidebar() {
+export default function Sidebar( { openSheet } ) {
 
     const [cards, setCards] = useState(contents);
 
@@ -37,7 +37,7 @@ export default function Sidebar() {
                 <ListItemIcon><FolderIcon sx={{color: 'blue'}}/></ListItemIcon>
                 <ListItemText primary="Hello"/>
             </ListItemButton>
-            <Folder folder={cards}></Folder>
+            <Folder folder={cards} path={"cards"} openSheet={openSheet}></Folder>
         </List>
 
     )

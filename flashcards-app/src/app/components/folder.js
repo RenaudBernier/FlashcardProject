@@ -12,7 +12,7 @@ import PromptDialog from "@/app/components/promptdialog";
 import {useState} from "react";
 
 
-export default function Folder({ folder }) {
+export default function Folder({ folder, path, openSheet }) {
     const [open, setOpen] = React.useState([]);
 
     function handleOpen(id) {
@@ -27,15 +27,15 @@ export default function Folder({ folder }) {
 
     return(
         <List sx={{ml: 2}}>
-            {folder.sheets.map((item, index) => (
+            {Object.entries(folder.sheets).map(([key, item]) => (
 
-                <ListItemButton key={index}>
+                <ListItemButton key={key} onClick={() => openSheet(item, `${path}.sheets.${key}`)}>
                     <ListItemIcon><NotesIcon></NotesIcon></ListItemIcon>
                     <ListItemText primary={item.name}></ListItemText>
                 </ListItemButton>
             ))}
-            {folder.folders.map((item, index) => (
-                <React.Fragment key={index}>
+            {Object.entries(folder.folders).map(([key, item]) => (
+                <React.Fragment key={key}>
                     <ListItem disablePadding sx={{ position: 'relative' }}>
                         <ListItemButton onClick={() => handleOpen(item.id)}>
                             <ListItemIcon><FolderIcon /></ListItemIcon>
@@ -54,7 +54,7 @@ export default function Folder({ folder }) {
                     </ListItem>
 
                     <Collapse in={open.includes(item.id)} timeout="auto" unmountOnExit>
-                        <Folder folder={item} />
+                        <Folder folder={item} path={`${path}.folders.${key}`} openSheet={openSheet}/>
                     </Collapse>
                 </React.Fragment>
             ))}
