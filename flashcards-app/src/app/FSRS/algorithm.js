@@ -1,6 +1,6 @@
 
-//Note: I am NOT the author of this algorithm. Articles used as references will be mentioned in Readme file
-
+//Note: I am NOT the author of this algorithm.
+// Source: https://github.com/open-spaced-repetition/fsrs
 //constant parameters needed for the algorithm
 const w = [
     0.40255, 1.18385, 3.173, 15.69105, 7.1949, 0.5345, 1.4604, 0.0046, 1.54575, 0.1192, 1.01925,
