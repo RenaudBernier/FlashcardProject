@@ -35,6 +35,7 @@ A powerful flashcard app built for effective learning and long-term memory reten
 
 - Card tagging and filtering
 - Review analytics
+- AI flashcard fact-checking
 
 ## 💡 About FSRS
 
