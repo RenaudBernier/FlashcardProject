@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 Smart Flashcards App
 
-## Getting Started
+A powerful flashcard app built for effective learning and long-term memory retention.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **⚡ Easy Flashcard Creation**  
+  Create flashcards effortlessly with rich text formatting. Supports:
+    - 🧠 **Code blocks** – great for programming learners
+    - 📐 **LaTeX math expressions** – ideal for math and science content
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **📅 Intelligent Review Scheduling**  
+  Uses the **FSRS (Free Spaced Repetition Scheduler)** algorithm to:
+    - Optimize review times based on your memory performance
+    - Maximize long-term retention and minimize review fatigue
+    - Uses Google login to allow users to easily create and review flashcards from any smart device
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **🗂️ Organized Structure**
+    - Arrange your content in **nested folders**
+    - Group flashcards into **sheets** for thematic organization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Why Use This App?
 
-## Learn More
+- Boost your study efficiency with AI-assisted scheduling
+- Keep your flashcards clean and categorized
+- Perfect for students, developers, and lifelong learners
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Frontend: React + Tiptap (rich text editor)
+- Backend: Firestore (database)
+- Algorithm: FSRS (custom implementation)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📌 Coming Soon
 
-## Deploy on Vercel
+- Card tagging and filtering
+- Review analytics
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💡 About FSRS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+FSRS is a modern, memory-optimized spaced repetition algorithm designed to model human memory decay and boost retention. Learn more [here](https://github.com/open-spaced-repetition/fsrs).
+
+---
+
+> Built with ❤️ to help you learn better and remember longer.

@@ -82,7 +82,7 @@ export default function Flashcards({ sheet, setSheet, path, updateRef }) {
                 >
                     Add Flashcard
                 </Button>
-                
+
             </Box>
         </Box>
     );
