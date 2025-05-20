@@ -39,7 +39,3 @@ A powerful flashcard app built for effective learning and long-term memory reten
 ## 💡 About FSRS
 
 FSRS is a modern, memory-optimized spaced repetition algorithm designed to model human memory decay and boost retention. Learn more [here](https://github.com/open-spaced-repetition/fsrs).
-
----
-
-> Built with ❤️ to help you learn better and remember longer.
