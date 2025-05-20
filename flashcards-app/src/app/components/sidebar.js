@@ -12,13 +12,17 @@ import {getAuth, onAuthStateChanged} from "firebase/auth";
 import {getDoc, doc} from "firebase/firestore";
 
 
-const contents = getcards()
+const def = {
+    sheets: {},
+    name: "def",
+    folders: {},
+}
 
 
 
-export default function Sidebar( { openSheet } ) {
+export default function Sidebar( { openSheet, f, setF } ) {
 
-    const [cards, setCards] = useState(contents);
+    const [cards, setCards] = useState(def);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(getAuth(), async (user) => {
@@ -31,13 +35,15 @@ export default function Sidebar( { openSheet } ) {
         return () => unsubscribe();
     }, []);
 
+
+
     return (
         <List sx={{minWidth: 250, ml: 0}}>
             <ListItemButton>
                 <ListItemIcon><FolderIcon sx={{color: 'blue'}}/></ListItemIcon>
                 <ListItemText primary="Hello"/>
             </ListItemButton>
-            <Folder folder={cards} path={"cards"} openSheet={openSheet}></Folder>
+            <Folder f={cards} path={"cards"} openSheet={openSheet}></Folder>
         </List>
 
     )

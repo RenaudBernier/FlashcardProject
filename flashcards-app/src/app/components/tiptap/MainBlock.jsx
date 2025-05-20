@@ -17,14 +17,17 @@ import { MathExtension } from "@aarkue/tiptap-math-extension";
 import CodeBlockComponent from './CodeBlockComponent'
 import {Box, Button} from "@mui/material";
 
+import TextAlign from '@tiptap/extension-text-align'
+
+
 // create a lowlight instance
-const lowlight = createLowlight(common)
+const lowlight = createLowlight(common);
 
 
 const MenuBar = () => {
     const {editor, editCard} = useCurrentEditor();
     if (!editor) {
-        return null
+        return null;
     }
 
     return (
@@ -38,38 +41,43 @@ const MenuBar = () => {
     )
 }
 
-export default ({content, editCard, isFront}) => {
-
-
+export default ({content, editCard, isFront, editable}) => {
 
     return (
-        <Box sx={{display: 'flex', flexDirection: 'column', flex: 1}}>
-            <MenuBar></MenuBar>
-        <EditorProvider
-            extensions={[
-                StarterKit.configure({ codeBlock: false }), // disable default codeBlock
-                CodeBlockLowlight.extend({
-                    addNodeView() {
-                        return ReactNodeViewRenderer(CodeBlockComponent)
-                    },
-                }).configure({ lowlight }),
-                MathExtension.configure({
-                    evaluation: true, katexOptions: { macros: { "\\B": "\\mathbb{B}"
-                    } }, delimiters: "dollar" }),
-            ]}
-            immediatelyRender={false}
-            content={content}
-            editorProps={{
-                attributes: {
-                    class: 'tiptap',
-                },
-            }}
-            slotBefore={<MenuBar />}
-            onUpdate={({ editor }) => {
-                const html = editor.getHTML();
-                editCard(html, isFront);
-            }}
-        />
-        </Box>
-    )
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <EditorProvider
+                    extensions={[
+                        StarterKit.configure({ codeBlock: false }),
+                        CodeBlockLowlight.extend({
+                            addNodeView() {
+                                return ReactNodeViewRenderer(CodeBlockComponent);
+                            },
+                        }).configure({ lowlight }),
+                        MathExtension.configure({
+                            evaluation: true,
+                            katexOptions: {
+                                macros: { "\\B": "\\mathbb{B}" }
+                            },
+                            delimiters: "dollar"
+                        }),
+                        TextAlign.configure({
+                            types: ['paragraph', 'heading'],
+                            defaultAlignment: 'center'
+                        })
+                    ]}
+                    immediatelyRender={false}
+                    content={content}
+                    editorProps={{
+                        attributes: {
+                            class: 'tiptap',
+                        },
+                        editable: () => editable
+                    }}
+                    onUpdate={({ editor }) => {
+                        const html = editor.getHTML();
+                        editCard(html, isFront);
+                    }}
+                />
+            </Box>
+    );
 }

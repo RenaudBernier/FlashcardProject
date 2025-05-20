@@ -1,3 +1,4 @@
+
 //Note: I am NOT the author of this algorithm. Articles used as references will be mentioned in Readme file
 
 //constant parameters needed for the algorithm
@@ -8,11 +9,16 @@ const w = [
 const f = 19/81;
 const c = -0.5;
 
-function review(card, grade, path, time){ //Grade range: [1, 4]
+export function review(card, grade, path){ //Grade range: [1, 4]
 
-    let s = card.s; //Stability: time in days for Retrievability to go from 1 to 0.9. Real number in range [0, INF]
-    let d = card.d; //Difficulty: how hard retrieval is. Real number in range [1, 10]
-    let r = retrievability(s, time); //Retrievability: probability of recalling the card. Real number in range [0, 1]
+    let s = null;
+    let d = null;
+
+    if (card.s) {
+        s = card.s; //Stability: time in days for Retrievability to go from 1 to 0.9. Real number in range [0, INF]
+        d = card.d; //Difficulty: how hard retrieval is. Real number in range [1, 10]
+    }
+    let r = retrievability(s, card); //Retrievability: probability of recalling the card. Real number in range [0, 1]
 
     s = stability(r, s, d, grade);
     d = difficulty(r, s, d, grade);
@@ -27,9 +33,22 @@ function review(card, grade, path, time){ //Grade range: [1, 4]
     card.d = d;
     card.reviewDate = nextReview;
 
+
 }
 
-function retrievability(s, t){
+function retrievability(s, card){
+    if (s == null){
+        return null;
+    }
+    const today = new Date();
+    const lastReview = card.lastReview.toDate();
+
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const diff = today - lastReview;
+    card.timediff = diff;
+
+    const t = diff / msPerDay;
+
     return Math.pow(1 + f * (t/s), c);
 }
 
@@ -40,8 +59,8 @@ function interval(s){
 }
 
 function stability(r, s, d, g){
-    if (s === -1){ //Cards are initiated with stability of -1. This code only executes on first review.
-        s = w[g];
+    if (s == null){ //Cards are initiated with null stability. This code only executes on first review.
+        s = w[g-1];
     }
     else if (g === 1){ //Recall failed
         const d_f = Math.pow(d, -w[12]); //Difficulty term. Higher D => lower d_f. So, higher Difficulty => steeper stability loss
@@ -69,10 +88,10 @@ function stability(r, s, d, g){
 
 function difficulty(r, s, d, g){
     function d_0(g){
-        return w[4] - Math.exp(w[5] * (g-1) + 1);
+        return w[4] - Math.exp(w[5] * (g-1)) + 1;
     }
 
-    if (d === -1){ //Used for first review
+    if (d == null){ //Used for first review
         return d_0(g);
     }
     else{

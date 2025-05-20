@@ -22,7 +22,10 @@ export default function PromptDialog({ open, onClose, title = "Prompt" }) {
         resetVal()
         onClose(temp)
     };   // returns the text
-    const handleCancel = () => onClose(null);
+    const handleCancel = () => {
+        onClose(null);
+        resetVal();
+    }
 
     return (
         <Dialog open={open} onClose={handleCancel} maxWidth="xs" fullWidth disableRestoreFocus >
